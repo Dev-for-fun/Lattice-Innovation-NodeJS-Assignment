@@ -1,6 +1,5 @@
 import express from "express";
 import "dotenv/config";
-import connectDB from "./database/connection.js";
 import patientRouter from "./routes/patients.js";
 import hospitalRouter from "./routes/hospitals.js";
 import { initSqlConfig, dumpData } from "./database/config.js";

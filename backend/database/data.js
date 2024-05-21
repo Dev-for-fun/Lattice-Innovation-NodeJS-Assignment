@@ -31,5 +31,5 @@ export const patientsPsychatrists = [
 
 export const psychiatrists = [
     ['Psychiatrist1',1],['Psychiatrist2',1],['Psychiatrist3',1],['Psychiatrist4',1],['Psychiatrist5',1],['Psychiatrist6',2],['Psychiatrist7',2],['Psychiatrist8',2],['Psychiatrist9',2],['Psychiatrist10',2],
-    ['Psychiatrist11',3],['Psychiatrist12',3],['Psychiatrist13',3],['Psychiatrist14',3],['Psychiatrist15',4],['Psychiatrist16',4],['Psychiatrist17',4],['Psychiatrist18',4],['Psychiatrist19',4],['Psychiatrist20',4]
+    ['Psychiatrist11',3],['Psychiatrist12',3],['Psychiatrist13',3],['Psychiatrist14',3],['Psychiatrist15',3],['Psychiatrist16',4],['Psychiatrist17',4],['Psychiatrist18',4],['Psychiatrist19',4],['Psychiatrist20',4]
 ];
