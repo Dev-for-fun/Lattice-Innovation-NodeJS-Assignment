@@ -1,7 +1,7 @@
 import connectDB from "./connection.js";
 import { patients, psychiatrists, patientsPsychatrists, hospitals } from "./data.js";
 
-
+//inital config function which automatically creates tables
 export const initSqlConfig = async() =>{
     
     const db = await  connectDB().then(pool => pool.getConnection());
@@ -49,6 +49,7 @@ export const initSqlConfig = async() =>{
     }
 }
 
+//function to dump the dummy data
 export const dumpData = async()=>{
     const db = await connectDB().then(pool => pool.getConnection());
     try{
