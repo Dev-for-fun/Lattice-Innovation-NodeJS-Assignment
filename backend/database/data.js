@@ -1,4 +1,4 @@
-
+//dummy data
 
 export const hospitals = [['Apollo Hospitals'],['Jawaharlal Nehru Medical College and Hospital'],['Indira Gandhi Institute of Medical Sciences (IGIMS)'],['AIIMS - All India Institute Of Medical Science']];
 
