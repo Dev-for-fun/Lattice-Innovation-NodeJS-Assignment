@@ -1,5 +1,5 @@
 -- create the database 
-CREATE DATABASE hospital_db;
+CREATE DATABASE IF NOT EXISTS hospital_db;
 USE hospital_db;
 
 

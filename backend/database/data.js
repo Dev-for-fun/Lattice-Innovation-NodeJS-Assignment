@@ -1,6 +1,6 @@
 
 
-export const hospitals = ['Apollo Hospitals','Jawaharlal Nehru Medical College and Hospital','Indira Gandhi Institute of Medical Sciences (IGIMS)','AIIMS - All India Institute Of Medical Science'];
+export const hospitals = [['Apollo Hospitals'],['Jawaharlal Nehru Medical College and Hospital'],['Indira Gandhi Institute of Medical Sciences (IGIMS)'],['AIIMS - All India Institute Of Medical Science']];
 
 export const patients = [
     ['Patient 1', '123 Long Street', 'patient1@example.com', '+1234567890', 'Password1A', 'link_to_photo1'],
@@ -29,7 +29,7 @@ export const patientsPsychatrists = [
     [1,2],[1,3],[2,1],[2,4],[2,5],[3,6],[3,7],[3,8],[4,9],[4,10],[4,11],[4,12],[4,13],[4,15],[5,16],[6,17],[7,18],[8,19],[9,20],[10,2],[11,9],[13,8],[13,7],[14,2],[14,6],[15,5],[16,2],[17,16],[18,10],[18,11],[18,12],[19,20]
 ];
 
-
-export const hospitalPsychatrists = [
-    [1,1],[1,2],[1,3],[1,4],[1,5],[2,6],[2,7],[2,8],[2,9],[2,10],[3,11],[3,12],[3,13],[3,14],[3,15],[4,16],[4,17],[4,18],[4,19],[4,20]
+export const psychiatrists = [
+    ['Psychiatrist1',1],['Psychiatrist2',1],['Psychiatrist3',1],['Psychiatrist4',1],['Psychiatrist5',1],['Psychiatrist6',2],['Psychiatrist7',2],['Psychiatrist8',2],['Psychiatrist9',2],['Psychiatrist10',2],
+    ['Psychiatrist11',3],['Psychiatrist12',3],['Psychiatrist13',3],['Psychiatrist14',3],['Psychiatrist15',4],['Psychiatrist16',4],['Psychiatrist17',4],['Psychiatrist18',4],['Psychiatrist19',4],['Psychiatrist20',4]
 ];
