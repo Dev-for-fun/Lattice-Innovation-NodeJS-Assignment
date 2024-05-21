@@ -36,3 +36,5 @@ You can test and explore the APIs using the Postman collection provided below:
 2. Create .env file( for guidance see .env.example file)
 3. Run the sql queries given in the /database/sql_schema_that_must_be_used.sql
 4. use npm run dev to run the nodejs project
+
+## For dummy data dump, uncomment the line 14 in server.js file but please sure that you have created the database before doing that.
