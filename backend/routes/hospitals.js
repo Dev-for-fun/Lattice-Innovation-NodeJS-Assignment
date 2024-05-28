@@ -3,6 +3,6 @@ import {handleShowDetails,handlePatientRegister} from '../controllers/hospitals.
 const hospitalRouter = express.Router();
 
 hospitalRouter.get("/details",handleShowDetails);
-hospitalRouter.post("/patients/register/:psychatristId",handlePatientRegister);
+hospitalRouter.post("/patients/register/:psychiatristId",handlePatientRegister);
 
 export default hospitalRouter;

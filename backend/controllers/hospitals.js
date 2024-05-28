@@ -10,7 +10,7 @@ const getPatientDetails = async(patientId)=>{
 
 export const handlePatientRegister = async(req,res)=>{
     const {name, address, email, phoneNumber, password} = req.body;
-    const {psychatristId} = req.params;
+    const {psychiatristId} = req.params;
     const photo = req.file?.filename;
     const { error } = patientSchema.validate({ name, address, email, phoneNumber, password, photo });
 
@@ -21,15 +21,7 @@ export const handlePatientRegister = async(req,res)=>{
     try{
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
-        const newUser = await db.query("INSERT INTO patients(name, address, email, phoneNumber, password, photo) VALUES (?,?,?,?,?,?)",[name,address,email,phoneNumber,passwordHash,photo]);
-    
-        try{
-            
-            await db.query("INSERT INTO Psychiatrist_Patients(psychiatristId,patientId) VALUES (?,?)",[psychatristId,newUser[0].insertId]);
-        }
-        catch(err){
-            return res.status(400).json({Error:"Please enter a valid psychatristId"});
-        }
+        const newUser = await db.query("INSERT INTO patients(name, address, email, phoneNumber, password, photo,psychiatristId) VALUES (?,?,?,?,?,?,?)",[name,address,email,phoneNumber,passwordHash,photo,psychiatristId]);
 
         const responseData = await getPatientDetails(newUser[0].insertId);
         
@@ -53,25 +45,25 @@ export const handleShowDetails = async(req,res)=>{
     try{
         const psychiatristDetails = await db.query(`
         SELECT
-            p.id AS PsychiatristId,
-            p.name AS PsychiatristName,
-            COUNT(pp.patientId) AS PatientsCount
-        FROM psychiatrists p
-        LEFT JOIN Psychiatrist_Patients pp ON p.id = pp.psychiatristId
-        WHERE p.hospitalId = ?
-        GROUP BY p.id, p.name
+            psy.id AS PsychiatristId,
+            psy.name AS PsychiatristName,
+            COUNT(DISTINCT pat.id) AS PatientsCount
+        FROM psychiatrists psy
+        LEFT JOIN Patients pat ON psy.id = pat.psychiatristId
+        WHERE psy.hospitalId = ?
+        GROUP BY psy.id, psy.name
     `, [hospitalId]);
 
         const hospitalDetails = await db.query(`SELECT 
         h.name as HospitalName,
-        COUNT(DISTINCT p.id) as totalPsychiatristCount,
-        COUNT(DISTINCT pp.patientId) as totalPatientsCount
+        COUNT(DISTINCT psy.id) as totalPsychiatristCount,
+        COUNT(DISTINCT p.id) as totalPatientsCount
         FROM 
             hospitals h
         LEFT JOIN 
-            psychiatrists p ON h.id = p.hospitalID
+            psychiatrists psy ON h.id = psy.hospitalID
         LEFT JOIN 
-            psychiatrist_patients pp ON p.id = pp.psychiatristId
+            patients p ON psy.id = p.psychiatristId
         WHERE 
             h.id = ?
         GROUP BY 
