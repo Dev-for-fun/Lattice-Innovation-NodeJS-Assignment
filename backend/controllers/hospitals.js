@@ -1,6 +1,6 @@
 import connectDB from "../database/connection.js";
 import patientSchema from "../database/validation.js";
-
+import bcrypt from "bcrypt";
 
 const db = await  connectDB().then(pool => pool.getConnection());
 const getPatientDetails = async(patientId)=>{
@@ -9,8 +9,9 @@ const getPatientDetails = async(patientId)=>{
 }
 
 export const handlePatientRegister = async(req,res)=>{
-    const {name, address, email, phoneNumber, password, photo} = req.body;
-    
+    const {name, address, email, phoneNumber, password} = req.body;
+    const {psychatristId} = req.params;
+    const photo = req.file?.filename;
     const { error } = patientSchema.validate({ name, address, email, phoneNumber, password, photo });
 
     if(error){
@@ -18,8 +19,18 @@ export const handlePatientRegister = async(req,res)=>{
     }
 
     try{
-        const newUser = await db.query("INSERT INTO patients(name, address, email, phoneNumber, password, photo) VALUES (?,?,?,?,?,?)",[name,address,email,phoneNumber,password,photo]);
+        const salt = await bcrypt.genSalt();
+        const passwordHash = await bcrypt.hash(password, salt);
+        const newUser = await db.query("INSERT INTO patients(name, address, email, phoneNumber, password, photo) VALUES (?,?,?,?,?,?)",[name,address,email,phoneNumber,passwordHash,photo]);
     
+        try{
+            
+            await db.query("INSERT INTO Psychiatrist_Patients(psychiatristId,patientId) VALUES (?,?)",[psychatristId,newUser[0].insertId]);
+        }
+        catch(err){
+            return res.status(400).json({Error:"Please enter a valid psychatristId"});
+        }
+
         const responseData = await getPatientDetails(newUser[0].insertId);
         
         return res.status(200).json(responseData[0]);
