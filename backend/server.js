@@ -5,6 +5,7 @@ import hospitalRouter from "./routes/hospitals.js";
 import { initSqlConfig, dumpData } from "./database/config.js";
 import { fileURLToPath } from "url";
 import multer from "multer";
+import fs from "fs";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -12,6 +13,12 @@ const __dirname = path.dirname(__filename);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use("/api/assets", express.static(path.join(__dirname, "public/assets")));
+
+// Ensure upload directory exists
+const uploadDir = path.join(__dirname, 'public/assets');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 /* FILE STORAGE */
 const storage = multer.diskStorage({
