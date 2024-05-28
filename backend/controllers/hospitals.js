@@ -12,7 +12,7 @@ export const handlePatientRegister = async(req,res)=>{
     const {name, address, email, phoneNumber, password} = req.body;
     const {psychiatristId} = req.params;
     const photo = req.file?.filename;
-    const { error } = patientSchema.validate({ name, address, email, phoneNumber, password, photo });
+    const { error } = patientSchema.validate({ name, address, email, phoneNumber, password, photo,psychiatristId });
 
     if(error){
         return res.status(400).json({Error:error.details[0].message});

@@ -18,7 +18,8 @@ const patientSchema = Joi.object({
         .required().messages({
             'string.pattern.base': 'The password must contain one upper character, one lower character and a number. Max length 15 and min length 8'
         }),
-    photo: Joi.string().required()
+    photo: Joi.string().required(),
+    psychiatristId:Joi.number().required()
 });
 
 export default patientSchema;
