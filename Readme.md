@@ -5,6 +5,9 @@
 - **MySQL**: Used as the relational database management system for storing and retrieving data.
 - **Joi**: Used for input validation to ensure data integrity and security.
 - **Postman**: Used for testing and documenting APIs during development.
+- **Bycrypt**: A library to help in hashing passwords.
+- **Multer**: Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
+- **dotenv**: Used for accessing the environment variables
 
 ## API Endpoints
 
@@ -12,6 +15,8 @@
 - **Endpoint:** `/api/patients/register`
 - **Method:** POST
 - **Description:** Register a new patient with provided details.
+- **Request Parameters:**
+  - `psychiatristId`: Integer (ID of the Psychiatrist)
 - **Request Body Fields:**
   - `name`: String
   - `address`: String (Minimum 10 characters)
