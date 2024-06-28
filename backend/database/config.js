@@ -8,19 +8,19 @@ export const initSqlConfig = async() =>{
     try{
 
         //for creating the tables in the sql server if not already exists
-        await db.query(`CREATE TABLE IF NOT EXISTS Hospitals (
+        await db.query(`CREATE TABLE IF NOT EXISTS hospitals (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL
         );`);
         
-        await db.query(`CREATE TABLE IF NOT EXISTS Psychiatrists (
+        await db.query(`CREATE TABLE IF NOT EXISTS psychiatrists (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             hospitalID INT,
             FOREIGN KEY (hospitalID) REFERENCES Hospitals(id) 
         );`);
 
-        await db.query(`CREATE TABLE IF NOT EXISTS Patients(
+        await db.query(`CREATE TABLE IF NOT EXISTS patients(
             id INT AUTO_INCREMENT,
             name VARCHAR(255) NOT NULL,
             address VARCHAR(255) NOT NULL,

@@ -49,7 +49,7 @@ export const handleShowDetails = async(req,res)=>{
             psy.name AS PsychiatristName,
             COUNT(DISTINCT pat.id) AS PatientsCount
         FROM psychiatrists psy
-        LEFT JOIN Patients pat ON psy.id = pat.psychiatristId
+        LEFT JOIN patients pat ON psy.id = pat.psychiatristId
         WHERE psy.hospitalId = ?
         GROUP BY psy.id, psy.name
     `, [hospitalId]);
