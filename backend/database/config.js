@@ -17,7 +17,7 @@ export const initSqlConfig = async() =>{
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             hospitalID INT,
-            FOREIGN KEY (hospitalID) REFERENCES Hospitals(id) 
+            FOREIGN KEY (hospitalID) REFERENCES hospitals(id) 
         );`);
 
         await db.query(`CREATE TABLE IF NOT EXISTS patients(
@@ -29,7 +29,7 @@ export const initSqlConfig = async() =>{
             password VARCHAR(255) NOT NULL,
             photo VARCHAR(255) NOT NULL,
             psychiatristId INT,
-            FOREIGN KEY (psychiatristId) REFERENCES Psychiatrists(id),
+            FOREIGN KEY (psychiatristId) REFERENCES psychiatrists(id),
             PRIMARY KEY(id,psychiatristId)
         );
         `);
