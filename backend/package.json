@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "generateDoc":"node swagger.js"
   },
   "author": "Gajendra Rathore",
   "license": "ISC",
@@ -19,6 +20,8 @@
     "express": "^4.19.2",
     "joi": "^17.13.1",
     "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.9.7"
+    "mysql2": "^3.9.7",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }

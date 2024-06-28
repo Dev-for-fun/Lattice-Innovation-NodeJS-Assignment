@@ -6,11 +6,17 @@ import { initSqlConfig, dumpData } from "./database/config.js";
 import { fileURLToPath } from "url";
 import multer from "multer";
 import fs from "fs";
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger-output.json' assert { type: 'json' };
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(express.urlencoded({extended:true}));
 app.use("/api/assets", express.static(path.join(__dirname, "public/assets")));
 

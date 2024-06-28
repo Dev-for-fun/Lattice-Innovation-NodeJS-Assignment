@@ -9,6 +9,7 @@ const getPatientDetails = async(patientId)=>{
 }
 
 export const handlePatientRegister = async(req,res)=>{
+    
     const {name, address, email, phoneNumber, password} = req.body;
     const {psychiatristId} = req.params;
     const photo = req.file?.filename;
@@ -24,7 +25,12 @@ export const handlePatientRegister = async(req,res)=>{
         const newUser = await db.query("INSERT INTO patients(name, address, email, phoneNumber, password, photo,psychiatristId) VALUES (?,?,?,?,?,?,?)",[name,address,email,phoneNumber,passwordHash,photo,psychiatristId]);
 
         const responseData = await getPatientDetails(newUser[0].insertId);
-        
+        /*
+            #swagger.responses[200]={
+                description : 'Patient Registration Output',
+                schema:{$ref:'#/definitions/PatientRegister'}
+            }
+        */
         return res.status(200).json(responseData[0]);
     }
     catch (err) {
@@ -38,6 +44,8 @@ export const handlePatientRegister = async(req,res)=>{
 
 
 export const handleShowDetails = async(req,res)=>{
+
+    
     const {hospitalId} = req.query;
     
     if(!hospitalId) return res.status(400).json({Error:"Please provide the hospital Id as the query"});
@@ -76,7 +84,12 @@ export const handleShowDetails = async(req,res)=>{
             TotalPatientsCount: hospitalDetails[0][0].totalPatientsCount,
             PsychiatristDetails: psychiatristDetails[0]
         };
-        
+        /*
+            #swagger.responses[200]={
+                description : 'Hospital Details',
+                schema:{$ref:'#/definitions/HospitalDetails'}
+            }
+         */
         return res.status(200).json(combinedDetails);
     }
     catch(err){
